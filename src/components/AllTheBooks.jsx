@@ -10,8 +10,8 @@ const AllTheBooks = () => {
       <Row className="justify-content-center g-4">
         {books.map((book) => {
           return (
-            <Col xs={12} sm={6} md={4} lg={3}>
-              <Card className="text-center h-100 shadow-lg" key={book.asin}>
+            <Col xs={12} sm={6} md={4} lg={3} key={book.asin}>
+              <Card className="text-center h-100 shadow-lg">
                 <Card.Img variant="top" src={book.img} />
                 <Card.Body className="flex-grow-1 d-flex flex-column justify-content-evenly">
                   <Card.Title>{book.title}</Card.Title>
