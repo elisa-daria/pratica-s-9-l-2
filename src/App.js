@@ -13,7 +13,7 @@ function App() {
         <EpibooksNavbar />
         <Welcome />
       </header>
-      <main className="bg-dark">
+      <main className="bg-dark p-3">
         <BookList books={horrors} />
       </main>
       <footer>
