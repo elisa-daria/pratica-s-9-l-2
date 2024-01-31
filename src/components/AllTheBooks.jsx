@@ -15,7 +15,9 @@ const AllTheBooks = () => {
                 <Card.Img variant="top" src={book.img} />
                 <Card.Body className="flex-grow-1 d-flex flex-column justify-content-evenly">
                   <Card.Title>{book.title}</Card.Title>
-                  <Card.Text>💲 {book.price}</Card.Text>
+                  <Card.Text>
+                    <i class="bi bi-currency-euro"></i> {book.price}
+                  </Card.Text>
                 </Card.Body>
               </Card>
             </Col>
