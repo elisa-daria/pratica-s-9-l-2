@@ -12,18 +12,23 @@ class SingleBook extends Component {
     const { selected } = this.state;
     return (
       <Col xs={12} sm={6} md={4} lg={3}>
-        <Card className="text-center h-100 shadow-lg">
+        <Card
+          onClick={() => this.setState({ selected: !selected })}
+          className={
+            selected
+              ? "border-4 border-danger text-center h-100 shadow-lg"
+              : "text-center h-100 shadow-lg"
+          }
+        >
           <Card.Img
-            onClick={() => this.setState({ selected: !selected })}
             variant="top"
             src={book.img}
             alt={"book-cover-" + book.title}
-            className={!selected ? "border-4 border-danger" : " "}
           />
           <Card.Body className="flex-grow-1 d-flex flex-column justify-content-evenly">
             <Card.Title>{book.title}</Card.Title>
             <Card.Text>
-              <i class="bi bi-currency-euro"></i> {book.price}
+              <i className="bi bi-currency-euro"></i> {book.price}
             </Card.Text>
           </Card.Body>
         </Card>
