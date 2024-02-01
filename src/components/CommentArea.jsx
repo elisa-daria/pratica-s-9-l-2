@@ -1,7 +1,9 @@
 import { Component } from "react";
-import ListGroup from "react-bootstrap/ListGroup";
-import ListGroupItem from "react-bootstrap/ListGroupItem";
-import Card from "react-bootstrap/Card";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import CommentList from "./CommentList";
+import AddComment from "./AddComment";
 
 class CommentArea extends Component {
   state = {
@@ -11,7 +13,7 @@ class CommentArea extends Component {
     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWFhNTZjYjE4N2U1YzAwMTgxNGM2YjciLCJpYXQiOjE3MDY3OTI0NzUsImV4cCI6MTcwODAwMjA3NX0.Hrxk_4QSLfOqFfE70sKM0FUN9n2w6Ry5851PhmwdMKU";
   myURL = "https://striveschool-api.herokuapp.com/api/comments/";
   componentDidMount() {
-    fetch(this.myURL, {
+    fetch(this.myURL + this.props.asin, {
       headers: {
         Authorization: this.myKey,
       },
@@ -23,9 +25,9 @@ class CommentArea extends Component {
           throw new Error(response.status);
         }
       })
-      .then((comments) => {
-        console.log("comments", comments);
-        this.setState({ comments });
+      .then((arrComments) => {
+        console.log("comments", arrComments);
+        this.setState({ comments: arrComments });
       })
       .catch((err) => {
         alert("ERRORE:" + err);
@@ -33,11 +35,16 @@ class CommentArea extends Component {
   }
   render() {
     return (
-      <Card.Subtitle className="mb-2 text-muted">
-        <ListGroup>
-          <ListGroupItem>jòflsjlòjsglòj</ListGroupItem>
-        </ListGroup>
-      </Card.Subtitle>
+      <Container className="bg-warning rounded-2 p-3 my-3">
+        <Row className="justify-content-center">
+          <Col xs={12} md={4}>
+            <CommentList reviews={this.state.comments} />
+          </Col>
+          <Col xs={12} md={8}>
+            <AddComment b_id={this.props.asin} />
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
