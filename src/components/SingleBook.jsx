@@ -1,6 +1,7 @@
 import { Component } from "react";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
+import CommentArea from "./CommentArea";
 
 class SingleBook extends Component {
   state = {
@@ -16,8 +17,8 @@ class SingleBook extends Component {
           onClick={() => this.setState({ selected: !selected })}
           className={
             selected
-              ? "border-4 border-danger text-center h-100 shadow-lg"
-              : "text-center h-100 shadow-lg"
+              ? "border-4 border-danger text-center h-100"
+              : "text-center h-100"
           }
         >
           <Card.Img
@@ -27,6 +28,7 @@ class SingleBook extends Component {
           />
           <Card.Body className="flex-grow-1 d-flex flex-column justify-content-evenly">
             <Card.Title>{book.title}</Card.Title>
+            {selected && <CommentArea />}
             <Card.Text>
               <i className="bi bi-currency-euro"></i> {book.price}
             </Card.Text>
