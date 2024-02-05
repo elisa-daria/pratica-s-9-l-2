@@ -4,18 +4,14 @@ import Col from "react-bootstrap/Col";
 import CommentArea from "./CommentArea";
 
 class SingleBook extends Component {
-  state = {
-    selected: false,
-  };
-
   render() {
-    const { book } = this.props;
-    const { selected } = this.state;
+    const { book, selected, changeSelected } = this.props;
+
     return (
       <>
-        <Col xs={12} sm={6} md={4} lg={3}>
+        <Col xs={6} sm={3} md={2}>
           <Card
-            onClick={() => this.setState({ selected: !selected })}
+            onClick={() => changeSelected(book.asin)}
             className={
               selected
                 ? "border-4 border-danger text-center h-100"
@@ -35,7 +31,6 @@ class SingleBook extends Component {
             </Card.Body>
           </Card>
         </Col>
-        {selected && <CommentArea asin={book.asin} />}
       </>
     );
   }
