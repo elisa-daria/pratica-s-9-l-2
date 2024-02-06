@@ -10,9 +10,20 @@ class AddComment extends Component {
     review: {
       comment: "",
       rate: "1",
-      elementId: this.props.b_id,
+      elementId: this.props.asin,
     },
   };
+  componentDidUpdate(prevProps) {
+    if (prevProps.asin !== this.props.asin) {
+      this.setState({
+        review: {
+          ...this.state.review,
+          elementId: this.props.asin,
+        },
+      });
+    }
+  }
+
   myKey =
     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWFhNTZjYjE4N2U1YzAwMTgxNGM2YjciLCJpYXQiOjE3MDY3OTI0NzUsImV4cCI6MTcwODAwMjA3NX0.Hrxk_4QSLfOqFfE70sKM0FUN9n2w6Ry5851PhmwdMKU";
   myURL = "https://striveschool-api.herokuapp.com/api/comments/";
@@ -28,6 +39,13 @@ class AddComment extends Component {
       .then((response) => {
         if (response.ok) {
           alert("content saved");
+          this.setState({
+            review: {
+              comment: "",
+              rate: "1",
+              elementId: this.props.asin,
+            },
+          });
         } else {
           throw new Error(response.status);
         }

@@ -1,7 +1,6 @@
 import { Component } from "react";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
-import CommentArea from "./CommentArea";
 
 class SingleBook extends Component {
   render() {
@@ -9,11 +8,11 @@ class SingleBook extends Component {
 
     return (
       <>
-        <Col xs={6} sm={3} md={2}>
+        <Col xs={12} sm={6} md={4}>
           <Card
             onClick={() => changeSelected(book.asin)}
             className={
-              selected
+              selected === book.asin
                 ? "border-4 border-danger text-center h-100"
                 : "text-center h-100"
             }

@@ -11,7 +11,7 @@ class BookList extends Component {
     searchBar: "",
     selectedBook: null,
   };
-  handleBookSelection = (asin) => {
+  handleBookSelection = (asin, selected) => {
     this.setState({
       selectedBook: asin,
     });
@@ -37,22 +37,28 @@ class BookList extends Component {
           </Row>
         </Container>
         <Container className="mt-3">
-          <Row className="justify-content-center align-items-center g-4">
-            {books
-              .filter((book) =>
-                book.title.toLowerCase().includes(searchBar.toLowerCase())
-              )
-              .map((book) => {
-                return (
-                  <SingleBook
-                    book={book}
-                    key={book.asin}
-                    selected={selectedBook === book.asin}
-                    changeSelected={this.handleBookSelection}
-                  />
-                );
-              })}
-            {selectedBook && <CommentArea asin={selectedBook} />}
+          <Row className="justify-content-center g-4">
+            <Col md={7}>
+              <Row className="justify-content-center g-4">
+                {books
+                  .filter((book) =>
+                    book.title.toLowerCase().includes(searchBar.toLowerCase())
+                  )
+                  .map((book) => {
+                    return (
+                      <SingleBook
+                        book={book}
+                        key={book.asin}
+                        selected={selectedBook}
+                        changeSelected={this.handleBookSelection}
+                      />
+                    );
+                  })}
+              </Row>
+            </Col>
+            <Col md={5}>
+              <CommentArea asin={selectedBook} />
+            </Col>
           </Row>
         </Container>
       </>

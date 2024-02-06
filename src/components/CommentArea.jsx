@@ -34,9 +34,9 @@ class CommentArea extends Component {
         alert("ERRORE:" + err);
       });
   };
-  componentDidMount() {
-    this.fetchingComments(this.props.asin);
-  }
+  // componentDidMount() {
+  //   // this.fetchingComments(this.props.asin);
+  // }
   componentDidUpdate(prevProps) {
     if (prevProps.asin !== this.props.asin) {
       this.fetchingComments(this.props.asin);
@@ -44,18 +44,16 @@ class CommentArea extends Component {
   }
   render() {
     return (
-      <Col xs={6}>
-        <Container className="bg-warning rounded-2 p-3 my-3">
-          <Row className="justify-content-center">
-            <Col xs={12} lg={6}>
-              <CommentList reviews={this.state.comments} />
-            </Col>
-            <Col xs={12} lg={6}>
-              <AddComment b_id={this.props.asin} />
-            </Col>
-          </Row>
-        </Container>
-      </Col>
+      <Container className="bg-warning rounded-2 p-3 my-3">
+        <Row className="justify-content-center">
+          <Col xs={12} xl={6}>
+            <CommentList reviews={this.state.comments} />
+          </Col>
+          <Col xs={12} xl={6}>
+            <AddComment asin={this.props.asin} />
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
