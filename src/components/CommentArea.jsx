@@ -51,7 +51,11 @@ const CommentArea = ({ asin }) => {
   //     this.fetchingComments(this.props.asin);
   //   }
   // }
-  useEffect(() => fetchingComments(asin), [asin]);
+  useEffect(() => {
+    if (asin) {
+      fetchingComments(asin);
+    }
+  }, [asin]);
 
   return (
     <Container className="bg-warning rounded-2 p-3 my-3">
