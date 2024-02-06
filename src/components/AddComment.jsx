@@ -66,7 +66,7 @@ const AddComment = ({ asin }) => {
   };
 
   return (
-    <Container className="bg-warning rounded-2 p-3 mb-3">
+    <Container className="bg-warning rounded-2 p-1 mb-3">
       <Row className="justify-content-center align-items-center">
         <Col xs={12} sm={10}>
           <Form
