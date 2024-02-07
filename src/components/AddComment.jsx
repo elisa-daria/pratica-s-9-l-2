@@ -12,7 +12,7 @@ const AddComment = ({ asin }) => {
   //     elementId: this.props.asin,
   //   },
   // };
-  const initialReview = { comment: "", rate: "1", elementId: asin };
+  const initialReview = { comment: "", rate: "1", elementId: null };
   const [review, setReview] = useState(initialReview);
 
   // componentDidUpdate(prevProps) {
@@ -39,7 +39,7 @@ const AddComment = ({ asin }) => {
   const myKey =
     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWFhNTZjYjE4N2U1YzAwMTgxNGM2YjciLCJpYXQiOjE3MDY3OTI0NzUsImV4cCI6MTcwODAwMjA3NX0.Hrxk_4QSLfOqFfE70sKM0FUN9n2w6Ry5851PhmwdMKU";
   const myURL = "https://striveschool-api.herokuapp.com/api/comments/";
-  const settingAReview = ({ asin }) => {
+  const settingAReview = () => {
     fetch(myURL, {
       method: "POST",
       headers: {
@@ -51,13 +51,7 @@ const AddComment = ({ asin }) => {
       .then((response) => {
         if (response.ok) {
           alert("content saved");
-          setReview({
-            review: {
-              comment: "",
-              rate: "1",
-              elementId: asin,
-            },
-          });
+          setReview(initialReview);
         } else {
           throw new Error(response.status);
         }
@@ -84,10 +78,8 @@ const AddComment = ({ asin }) => {
                 value={review.comment}
                 onChange={(e) => {
                   setReview({
-                    review: {
-                      ...review,
-                      comment: e.target.value,
-                    },
+                    ...review,
+                    comment: e.target.value,
                   });
                 }}
               />
@@ -99,10 +91,8 @@ const AddComment = ({ asin }) => {
                 value={review.rate}
                 onChange={(e) => {
                   setReview({
-                    review: {
-                      ...review,
-                      rate: e.target.value,
-                    },
+                    ...review,
+                    rate: e.target.value,
                   });
                 }}
                 required
